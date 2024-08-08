@@ -16,7 +16,6 @@ class LayoutView extends StatefulWidget {
 
 class _LayoutViewState extends State<LayoutView> {
   int selectedIdx = 0;
-
   List<Widget> screensList = [
     QuranView(),
     HadithView(),
@@ -37,7 +36,7 @@ class _LayoutViewState extends State<LayoutView> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            "اسلامي",
+            "إسلامي",
           ),
           centerTitle: true,
         ),

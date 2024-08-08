@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islami/moduls/quran/quran_details_view.dart';
 import 'package:islami/moduls/splash/splash_view.dart';
 
 import 'core/theme/application_theme_data.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashView.routeName: (context) => const SplashView(),
         LayoutView.routeName: (context) => LayoutView(),
+        QuranDetailsView.routeName: (context) => QuranDetailsView(),
       },
     );
   }

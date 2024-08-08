@@ -34,5 +34,34 @@ class ApplicationThemeManager {
         size: 28,
       ),
     ),
-  );
+      dividerTheme: DividerThemeData(
+        color: primaryColor,
+        space: 10,
+      ),
+      textTheme: const TextTheme(
+        titleLarge: TextStyle(
+          fontFamily: "ElMessiri",
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+          color: Color(0xFF242424),
+        ),
+        bodyLarge: TextStyle(
+          fontFamily: "ElMessiri",
+          fontSize: 25,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFF242424),
+        ),
+        bodyMedium: TextStyle(
+          fontFamily: "ElMessiri",
+          fontSize: 25,
+          fontWeight: FontWeight.w400,
+          color: Color(0xFF242424),
+        ),
+        bodySmall: TextStyle(
+          fontFamily: "ElMessiri",
+          fontSize: 25,
+          fontWeight: FontWeight.w400,
+          color: Color(0xFF242424),
+        ),
+      ));
 }
