@@ -12,8 +12,6 @@ class HadithDetailsView extends StatelessWidget {
     var data = ModalRoute.of(context)?.settings.arguments as String;
     var theme = Theme.of(context);
     int idx = data.indexOf('\n');
-    print(data.substring(0, idx));
-    print(data.substring(idx + 1));
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
