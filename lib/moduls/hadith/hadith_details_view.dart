@@ -13,7 +13,7 @@ class HadithDetailsView extends StatelessWidget {
     var theme = Theme.of(context);
     int idx = data.indexOf('\n');
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/background_image.png"),
           fit: BoxFit.cover,
