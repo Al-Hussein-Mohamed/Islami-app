@@ -6,6 +6,10 @@ class RadioView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    var mediaQuery = MediaQuery.of(context);
+    double Height = mediaQuery.size.height;
+    double Width = mediaQuery.size.width;
+
     return Container(
       margin: const EdgeInsets.only(
         top: 180,

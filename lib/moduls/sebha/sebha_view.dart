@@ -12,45 +12,51 @@ int counter = 0;
 class _SebhaViewState extends State<SebhaView> {
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.sizeOf(context);
     var theme = Theme.of(context);
+    var mediaQuery = MediaQuery.of(context);
+    double screenHeight = mediaQuery.size.height;
+    double screenWidth = mediaQuery.size.width;
+
     return Column(
       children: [
-        const SizedBox(
-          height: 50,
+        SizedBox(
+          height: screenHeight * 0.04,
         ),
         SizedBox(
-          height: 350,
+          height: screenHeight * 0.33,
           width: double.infinity,
           child: Stack(
             alignment: Alignment.center,
             children: [
               Positioned(
-                top: 37,
+                top: screenHeight * 0.025,
                 child: Image.asset(
                   "assets/icons/sebha_header.png",
-                  scale: 2.8,
+                  height: screenHeight * 0.3,
+                  width: screenWidth * 0.6,
                 ),
               ),
               Positioned(
                 top: 0,
+                left: screenWidth * .47,
                 child: Image.asset(
                   "assets/icons/sebha_head.png",
                   scale: 2.8,
+                  width: screenWidth * 0.15,
                 ),
               ),
             ],
           ),
         ),
-        const SizedBox(
-          height: 25,
+        SizedBox(
+          height: screenHeight * 0.022,
         ),
         Text(
           "عدد التسبيحات",
           style: theme.textTheme.bodyLarge,
         ),
-        const SizedBox(
-          height: 50,
+        SizedBox(
+          height: screenHeight * 0.04,
         ),
         Container(
           width: 80,
@@ -65,8 +71,8 @@ class _SebhaViewState extends State<SebhaView> {
             style: theme.textTheme.bodyLarge,
           ),
         ),
-        const SizedBox(
-          height: 50,
+        SizedBox(
+          height: screenHeight * 0.04,
         ),
         SizedBox(
           width: double.infinity,

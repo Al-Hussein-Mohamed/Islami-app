@@ -80,7 +80,6 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
   Future<void> loadQuranData(String suraNumber) async {
     String content =
         await rootBundle.loadString("assets/files/$suraNumber.txt");
-    print(content);
     verses = content.split("\n");
     if (verses[verses.length - 1].isEmpty) verses.removeLast();
     setState(() {});
