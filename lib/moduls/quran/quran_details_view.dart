@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami/core/setting_provider.dart';
 import 'package:islami/moduls/quran/quran_view.dart';
+import 'package:provider/provider.dart';
 
 class QuranDetailsView extends StatefulWidget {
   static const String routeName = "quran_details";
@@ -18,22 +21,26 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
   Widget build(BuildContext context) {
     var data = ModalRoute.of(context)?.settings.arguments as SuraData;
     var theme = Theme.of(context);
+    var provider = Provider.of<SettingProvider>(context);
+    var lang = AppLocalizations.of(context)!;
     if (verses.isEmpty) {
       loadQuranData(data.surNumber);
     }
 
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/background_image.png"),
+          image: AssetImage(provider.getBackgroundImage()),
           fit: BoxFit.cover,
         ),
       ),
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            "إسلامي",
-            style: theme.textTheme.titleLarge,
+            lang.islami,
+            style: theme.textTheme.titleLarge?.copyWith(
+              color: provider.isDark() ? Colors.white : Colors.black,
+            ),
           ),
           centerTitle: true,
         ),
@@ -43,7 +50,8 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
           padding:
               const EdgeInsets.only(right: 30, left: 30, top: 30, bottom: 80),
           decoration: BoxDecoration(
-            color: Color(0xFFF8F8F8).withOpacity(.75),
+            color: Color(provider.isDark() ? 0xFF141A2E : 0xFFF8F8F8)
+                .withOpacity(.75),
             borderRadius: BorderRadius.circular(25),
           ),
           child: Column(
@@ -56,7 +64,10 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
                     style: theme.textTheme.bodyMedium,
                   ),
                   SizedBox(width: 15),
-                  const Icon(Icons.play_circle_fill_rounded),
+                  Icon(
+                    Icons.play_circle_fill_rounded,
+                    color: Color(provider.isDark() ? 0xFFFACC1D : 0xFF000000),
+                  ),
                 ],
               ),
               Divider(),
