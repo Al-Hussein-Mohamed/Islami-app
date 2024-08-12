@@ -15,7 +15,7 @@ class QuranDetailsView extends StatefulWidget {
 }
 
 class _QuranDetailsViewState extends State<QuranDetailsView> {
-  List<String> verses = [];
+  String sura = "";
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
     var theme = Theme.of(context);
     var provider = Provider.of<SettingProvider>(context);
     var lang = AppLocalizations.of(context)!;
-    if (verses.isEmpty) {
+    if (sura.isEmpty) {
       loadQuranData(data.surNumber);
     }
 
@@ -46,9 +46,9 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
         ),
         body: Container(
           margin:
-              const EdgeInsets.only(right: 30, left: 30, top: 20, bottom: 80),
+              const EdgeInsets.only(right: 12, left: 12, top: 20, bottom: 30),
           padding:
-              const EdgeInsets.only(right: 30, left: 30, top: 30, bottom: 80),
+              const EdgeInsets.only(right: 12, left: 12, top: 30, bottom: 30),
           decoration: BoxDecoration(
             color: Color(provider.isDark() ? 0xFF141A2E : 0xFFF8F8F8)
                 .withOpacity(.75),
@@ -61,24 +61,29 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
                 children: [
                   Text(
                     " سورة ${data.surName}",
-                    style: theme.textTheme.bodyMedium,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
-                  SizedBox(width: 15),
+                  const SizedBox(width: 15),
                   Icon(
                     Icons.play_circle_fill_rounded,
                     color: Color(provider.isDark() ? 0xFFFACC1D : 0xFF000000),
                   ),
                 ],
               ),
-              Divider(),
+              const Divider(),
+              const SizedBox(
+                height: 15,
+              ),
               Expanded(
                 child: ListView.builder(
                   itemBuilder: (context, idx) => Text(
-                    "{${idx + 1}} ${verses[idx]}",
+                    sura,
                     textAlign: TextAlign.center,
-                    style: theme.textTheme.bodySmall,
+                    style: theme.textTheme.displaySmall,
                   ),
-                  itemCount: verses.length,
+                  itemCount: 1,
                 ),
               )
             ],
@@ -91,8 +96,15 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
   Future<void> loadQuranData(String suraNumber) async {
     String content =
         await rootBundle.loadString("assets/files/$suraNumber.txt");
-    verses = content.split("\n");
-    if (verses[verses.length - 1].isEmpty) verses.removeLast();
+    List<String> verses = content.split("\n");
+    while (verses.last.trim().isEmpty) {
+      verses.removeLast();
+    }
+    for (int i = 0; i < verses.length; i++) {
+      sura += verses[i].trim();
+      sura += " {${i + 1}} ";
+    }
+
     setState(() {});
   }
 }

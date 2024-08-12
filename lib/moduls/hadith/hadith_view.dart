@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami/moduls/hadith/hadith_details_view.dart';
+import 'package:provider/provider.dart';
+
+import '../../core/setting_provider.dart';
 
 class HadithView extends StatefulWidget {
   const HadithView({super.key});
@@ -15,6 +18,9 @@ class _HadithViewState extends State<HadithView> {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    var provider = Provider.of<SettingProvider>(context);
+    var textColor =
+        provider.isDark() ? const Color(0xFFC29A13) : const Color(0xFF242424);
     if (hadith.isEmpty) loadHadithData();
     return Column(
       children: [
@@ -42,7 +48,9 @@ class _HadithViewState extends State<HadithView> {
                 padding: const EdgeInsets.all(7.0),
                 child: Text(
                   "الحديث رقم ${idx + 1}",
-                  style: theme.textTheme.bodyMedium,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: textColor,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),

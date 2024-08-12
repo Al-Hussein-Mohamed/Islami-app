@@ -65,6 +65,13 @@ class ApplicationThemeManager {
         fontWeight: FontWeight.w400,
         color: Color(0xFF242424),
       ),
+      displaySmall: TextStyle(
+        fontFamily: "ElMessiri",
+        height: 2,
+        fontSize: 19.5,
+        fontWeight: FontWeight.w600,
+        color: Color(0xFF242424),
+      ),
     ),
   );
   static ThemeData darkTheme = ThemeData(
@@ -131,6 +138,13 @@ class ApplicationThemeManager {
         fontSize: 25,
         fontWeight: FontWeight.w400,
         color: primaryDarkColor,
+      ),
+      displaySmall: TextStyle(
+        fontFamily: "ElMessiri",
+        height: 2,
+        fontSize: 19.5,
+        fontWeight: FontWeight.w600,
+        color: primaryColor,
       ),
     ),
   );

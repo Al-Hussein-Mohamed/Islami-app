@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:islami/core/setting_provider.dart';
+import 'package:provider/provider.dart';
 
 class SebhaView extends StatefulWidget {
   const SebhaView({super.key});
@@ -14,6 +16,8 @@ class _SebhaViewState extends State<SebhaView> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var mediaQuery = MediaQuery.of(context);
+    var provider = Provider.of<SettingProvider>(context);
+    var textColor = provider.isDark() ? const Color(0xFF141A2E) : Colors.white;
     double screenHeight = mediaQuery.size.height;
     double screenWidth = mediaQuery.size.width;
 
@@ -63,12 +67,14 @@ class _SebhaViewState extends State<SebhaView> {
           height: 100,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: const Color(0xFFB7935F).withOpacity(0.7),
+            color: theme.primaryColor.withOpacity(0.7),
             borderRadius: BorderRadius.circular(25),
           ),
           child: Text(
             counter.toString(),
-            style: theme.textTheme.bodyLarge,
+            style: theme.textTheme.bodyLarge?.copyWith(
+              color: textColor,
+            ),
           ),
         ),
         SizedBox(
@@ -89,7 +95,7 @@ class _SebhaViewState extends State<SebhaView> {
                 child: Text(
                   "سبحان الله",
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: Colors.white,
+                    color: textColor,
                   ),
                 ),
               ),
@@ -101,9 +107,9 @@ class _SebhaViewState extends State<SebhaView> {
                 ),
                 child: IconButton(
                   onPressed: reset,
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.refresh_rounded,
-                    color: Colors.white,
+                    color: textColor,
                   ),
                 ),
               )

@@ -37,9 +37,9 @@ class HadithDetailsView extends StatelessWidget {
         ),
         body: Container(
           margin:
-              const EdgeInsets.only(right: 30, left: 30, top: 20, bottom: 80),
+              const EdgeInsets.only(right: 12, left: 12, top: 20, bottom: 30),
           padding:
-              const EdgeInsets.only(right: 30, left: 30, top: 30, bottom: 80),
+              const EdgeInsets.only(right: 12, left: 12, top: 30, bottom: 30),
           decoration: BoxDecoration(
             color: Color(provider.isDark() ? 0xFF141A2E : 0xFFF8F8F8)
                 .withOpacity(.75),
@@ -49,16 +49,20 @@ class HadithDetailsView extends StatelessWidget {
             children: [
               Text(
                 data.substring(0, idx),
-                style: theme.textTheme.bodyMedium,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w800,
+                ),
               ),
               const Divider(),
+              const SizedBox(
+                height: 15,
+              ),
               Expanded(
                 child: SingleChildScrollView(
                   child: Text(
+                    textAlign: TextAlign.right,
                     data.substring(idx + 1),
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      fontSize: 20,
-                    ),
+                    style: theme.textTheme.displaySmall,
                   ),
                 ),
               )
