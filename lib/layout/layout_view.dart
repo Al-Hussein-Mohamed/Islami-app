@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami/core/setting_provider.dart';
 import 'package:islami/moduls/hadith/hadith_view.dart';
 import 'package:islami/moduls/quran/quran_view.dart';
 import 'package:islami/moduls/radio/raido_view.dart';
 import 'package:islami/moduls/sebha/sebha_view.dart';
 import 'package:islami/moduls/settings/settings_view.dart';
+import 'package:provider/provider.dart';
 
 class LayoutView extends StatefulWidget {
   static const String routeName = "layout";
@@ -16,28 +19,29 @@ class LayoutView extends StatefulWidget {
 
 class _LayoutViewState extends State<LayoutView> {
   int selectedIdx = 0;
-
   List<Widget> screensList = [
-    QuranView(),
-    HadithView(),
-    SebhaView(),
-    RadioView(),
-    SettingsView(),
+    const QuranView(),
+    const HadithView(),
+    const SebhaView(),
+    const RadioView(),
+    const SettingsView(),
   ];
 
   @override
   Widget build(BuildContext context) {
+    var lang = AppLocalizations.of(context)!;
+    var provider = Provider.of<SettingProvider>(context);
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/background_image.png"),
+          image: AssetImage(provider.getBackgroundImage()),
           fit: BoxFit.cover,
         ),
       ),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            "اسلامي",
+          title: Text(
+            lang.islami,
           ),
           centerTitle: true,
         ),
@@ -49,21 +53,23 @@ class _LayoutViewState extends State<LayoutView> {
               selectedIdx = index;
             });
           },
-          items: const [
+          items: [
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage("assets/icons/quran.png")),
-                label: "quran"),
+                icon: const ImageIcon(AssetImage("assets/icons/quran.png")),
+                label: lang.quran),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage("assets/icons/hadith.png")),
-                label: "hadith"),
+                icon: const ImageIcon(AssetImage("assets/icons/hadith.png")),
+                label: lang.hadith),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage("assets/icons/sebha_blue.png")),
-                label: "sebha"),
+                icon:
+                    const ImageIcon(AssetImage("assets/icons/sebha_blue.png")),
+                label: lang.tasbeh),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage("assets/icons/radio_blue.png")),
-                label: "radio"),
+                icon:
+                    const ImageIcon(AssetImage("assets/icons/radio_blue.png")),
+                label: lang.radio),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings), label: "settings"),
+                icon: const Icon(Icons.settings), label: lang.settings),
           ],
         ),
       ),
